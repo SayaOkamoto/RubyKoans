@@ -14,7 +14,7 @@ class AboutClassMethods < Neo::Koan
   end
 
   def test_classes_are_objects_too
-    assert_equal false, Dog.is_a?(Object)
+    assert_equal true, Dog.is_a?(Object)
   end
 
   def test_objects_have_methods
@@ -82,7 +82,7 @@ class AboutClassMethods < Neo::Koan
     fido = Dog.new
     fido.name = "Fido"
     assert_equal "Fido", fido.name
-    assert_equal :name, Dog.name
+    assert_equal nil, Dog.name
   end
 
   # ------------------------------------------------------------------
