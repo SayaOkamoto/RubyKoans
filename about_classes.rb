@@ -19,7 +19,7 @@ class AboutClasses < Neo::Koan
 
   def test_instance_variables_can_be_set_by_assigning_to_them
     fido = Dog2.new
-    assert_equal [:@name], fido.instance_variables
+    assert_equal [], fido.instance_variables
 
     fido.set_name("Fido")
     assert_equal [:@name], fido.instance_variables
@@ -159,7 +159,7 @@ class AboutClasses < Neo::Koan
     fido = Dog7.new("Fido")
 
     fidos_self = fido.get_self
-    assert_equal Dog7, fidos_self
+    assert_equal fido, fidos_self
   end
 
   def test_to_s_provides_a_string_version_of_the_object
@@ -180,8 +180,8 @@ class AboutClasses < Neo::Koan
   def test_all_objects_support_to_s_and_inspect
     array = [1,2,3]
 
-    assert_equal "[1,2,3]", array.to_s
-    assert_equal "[1,2,3]", array.inspect
+    assert_equal "[1, 2, 3]", array.to_s
+    assert_equal "[1, 2, 3]", array.inspect
 
     assert_equal "STRING", "STRING".to_s
     assert_equal "\"STRING\"", "STRING".inspect

@@ -1,19 +1,23 @@
 require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 # Implement a DiceSet Class here:
+# インスタンス変数の取り扱いがちゃんと出来るか
 #
 class DiceSet
-    values = Array.new
-    attr_reader(values)
+    attr_reader :values
+
+    def initialize
+        @values = Array.new
+    end
 
     def roll(number)
-        i = 0
-        while i <= number
+        roll_vals = Array.new
+        number.times do |i|
             i += 1
-            i << values
-            values.shuffle!
+            roll_vals << i
         end
-        return values
+        roll_vals.shuffle!
+        @values = roll_vals
     end
 end
 
