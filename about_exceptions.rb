@@ -7,9 +7,9 @@ class AboutExceptions < Neo::Koan
 
   def test_exceptions_inherit_from_Exception
     assert_equal RuntimeError, MySpecialError.ancestors[1]
-    assert_equal AboutExceptions, MySpecialError.ancestors[2]
-    assert_equal Koan, MySpecialError.ancestors[3]
-    assert_equal Neo, MySpecialError.ancestors[4]
+    assert_equal StandardError, MySpecialError.ancestors[2]
+    assert_equal Exception, MySpecialError.ancestors[3]
+    assert_equal Object, MySpecialError.ancestors[4]
   end
 
   def test_rescue_clause
@@ -28,7 +28,7 @@ class AboutExceptions < Neo::Koan
     assert RuntimeError.ancestors.include?(StandardError),
       "RuntimeError is a subclass of StandardError"
 
-    assert_equal nil, ex.message #わからぬ…
+    assert_equal "Oops", ex.message
   end
 
   def test_raising_a_particular_error

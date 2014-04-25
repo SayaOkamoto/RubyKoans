@@ -50,7 +50,7 @@ class AboutIteration < Neo::Koan
       break if item > 3
       sum += item
     end
-    assert_equal 3, sum
+    assert_equal 6, sum
   end
 
   def test_collect_transforms_elements_of_an_array
@@ -77,7 +77,7 @@ class AboutIteration < Neo::Koan
   def test_find_locates_the_first_element_matching_a_criteria
     array = ["Jim", "Bill", "Clarence", "Doug", "Eli"]
 
-    assert_equal "Bill", array.find { |item| item.size > 4 }
+    assert_equal "Clarence", array.find { |item| item.size > 4 }
   end
 
   def test_inject_will_blow_your_mind
@@ -85,7 +85,7 @@ class AboutIteration < Neo::Koan
     assert_equal 9, result
 
     result2 = [2, 3, 4].inject(1) { |product, item| product * item }
-    assert_equal 10, result2
+    assert_equal 24, result2
 
     # Extra Credit:
     # Describe in your own words what inject does.

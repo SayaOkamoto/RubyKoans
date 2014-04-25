@@ -123,8 +123,8 @@ class AboutMessagePassing < Neo::Koan
     catcher = AllMessageCatcher.new
 
     assert_equal "Someone called foobar with <>", catcher.foobar
-    assert_equal "Someone called foobaz with 1", catcher.foobaz(1)
-    assert_equal "Someone called sum with 1, 2, 3, 4, 5, 6", catcher.sum(1,2,3,4,5,6)
+    assert_equal "Someone called foobaz with <1>", catcher.foobaz(1)
+    assert_equal "Someone called sum with <1, 2, 3, 4, 5, 6>", catcher.sum(1,2,3,4,5,6)
   end
 
   def test_catching_messages_makes_respond_to_lie
@@ -133,7 +133,7 @@ class AboutMessagePassing < Neo::Koan
     assert_nothing_raised do
       catcher.any_method
     end
-    assert_equal true, catcher.respond_to?(:any_method)
+    assert_equal false, catcher.respond_to?(:any_method)
   end
 
   # ------------------------------------------------------------------

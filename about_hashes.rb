@@ -70,7 +70,7 @@ class AboutHashes < Neo::Koan
     hash = { "jim" => 53, "amy" => 20, "dan" => 23 }
     new_hash = hash.merge({ "jim" => 54, "jenny" => 26 })
 
-    assert_equal __, hash != new_hash
+    assert_equal true, hash != new_hash
 
     expected = { "jim" => 54, "amy" => 20, "dan" => 23, "jenny" => 26 }
     assert_equal true, expected == new_hash
@@ -96,11 +96,11 @@ class AboutHashes < Neo::Koan
     hash[:one] << "uno"
     hash[:two] << "dos"
 
-    assert_equal "uno", hash[:one]
-    assert_equal "dos", hash[:two]
-    assert_equal [], hash[:three]
+    assert_equal ["uno", "dos"], hash[:one]
+    assert_equal ["uno", "dos"], hash[:two]
+    assert_equal ["uno", "dos"], hash[:three]
 
-    assert_equal false, hash[:one].object_id == hash[:two].object_id
+    assert_equal true, hash[:one].object_id == hash[:two].object_id
   end
 
   def test_default_value_with_block
@@ -109,8 +109,8 @@ class AboutHashes < Neo::Koan
     hash[:one] << "uno"
     hash[:two] << "dos"
 
-    assert_equal "uno", hash[:one]
-    assert_equal "dos", hash[:two]
+    assert_equal ["uno"], hash[:one]
+    assert_equal ["dos"], hash[:two]
     assert_equal [], hash[:three]
   end
 end
