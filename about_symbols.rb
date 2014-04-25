@@ -33,16 +33,15 @@ class AboutSymbols < Neo::Koan
   # Why do we convert the list of symbols to strings and then compare
   # against the string value rather than against symbols?
 
-  # ここから怪しい
   in_ruby_version("mri") do
     RubyConstant = "What is the sound of one hand clapping?"
     def test_constants_become_symbols
       all_symbols_as_strings = Symbol.all_symbols.map { |x| x.to_s }
 
-      assert_equal true, all_symbols_as_strings.include?("What is the sound of one hand clapping?")
+      assert_equal false, all_symbols_as_strings.include?("What is the sound of one hand clapping?")
+      # RubyConstantは定数なので、Symbolとしては含まれない
     end
   end
-  # ここまで怪しい
 
   def test_symbols_can_be_made_from_strings
     string = "catsAndDogs"
@@ -66,7 +65,7 @@ class AboutSymbols < Neo::Koan
     symbol = :cats
     string = "It is raining #{symbol} and dogs."
 
-    assert_equal "It is raining cats and dogs", string
+    assert_equal "It is raining cats and dogs.", string
   end
 
   def test_symbols_are_not_strings

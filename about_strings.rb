@@ -39,10 +39,10 @@ class AboutStrings < Neo::Koan
     long_string = %{
 It was the best of times,
 It was the worst of times.
-}
-    assert_equal 51, long_string.length
-    assert_equal 2, long_string.lines.count
-    assert_equal "I", long_string[0,1]
+} #この行には何も文字がないのでlineにはカウントしない
+    assert_equal 54, long_string.length
+    assert_equal 3, long_string.lines.count
+    assert_equal "\n", long_string[0,1]
   end
 
   def test_here_documents_can_also_handle_multiple_lines
@@ -50,9 +50,10 @@ It was the worst of times.
 It was the best of times,
 It was the worst of times.
 EOS
-    assert_equal 51, long_string.length
+p long_string
+    assert_equal 53, long_string.length #最後に改行が入る
     assert_equal 2, long_string.lines.count
-    assert_equal "I", long_string[0,1]
+    assert_equal "I", long_string[0,1] #最初に改行文字はない
   end
 
   def test_plus_will_concatenate_two_strings
@@ -96,7 +97,7 @@ EOS
     hi = original_string
     there = "World"
     hi << there
-    assert_equal "Hello, ", original_string
+    assert_equal "Hello, World", original_string
 
     # THINK ABOUT IT:
     #
@@ -116,7 +117,7 @@ EOS
 
   def test_single_quotes_sometimes_interpret_escape_characters
     string = '\\\''
-    assert_equal 4, string.size
+    assert_equal 2, string.size
     assert_equal '\\\'', string
   end
 
@@ -134,7 +135,7 @@ EOS
 
   def test_any_ruby_expression_may_be_interpolated
     string = "The square root of 5 is #{Math.sqrt(5)}"
-    assert_equal "The square root of 5 is √5", string
+    assert_equal "The square root of 5 is 2.23606797749979", string
   end
 
   def test_you_can_get_a_substring_from_a_string

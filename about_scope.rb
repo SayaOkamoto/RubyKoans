@@ -43,7 +43,7 @@ class AboutScope < Neo::Koan
   end
 
   def test_nested_string_is_not_the_same_as_the_system_string
-    assert_equal true, String == "HI".class
+    assert_equal false, String == "HI".class #38行目のString
   end
 
   def test_use_the_prefix_scope_operator_to_force_the_global_scope
@@ -73,7 +73,7 @@ class AboutScope < Neo::Koan
   end
 
   def test_you_can_get_a_list_of_constants_for_any_class_or_module
-    assert_equal [], Jims.constants
-    assert Object.constants.size > 1 #いくつにすればいい？
+    assert_equal [:Dog], Jims.constants
+    assert Object.constants.size > 0 #いくつにすればいい？
   end
 end

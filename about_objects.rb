@@ -21,7 +21,7 @@ class AboutObjects < Neo::Koan
 
   def test_every_object_has_an_id
     obj = Object.new
-    assert_equal Integer, obj.object_id.class
+    assert_equal Fixnum, obj.object_id.class #マシンのポインタのサイズに収まる長さの固定長整数
   end
 
   def test_every_object_has_different_id
@@ -44,7 +44,7 @@ class AboutObjects < Neo::Koan
     obj = Object.new
     copy = obj.clone
 
-    assert_equal false, obj           != copy
+    assert_equal true, obj           != copy
     assert_equal true, obj.object_id != copy.object_id
   end
 end

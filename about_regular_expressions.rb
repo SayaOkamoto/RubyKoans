@@ -26,7 +26,7 @@ class AboutRegularExpressions < Neo::Koan
   end
 
   def test_asterisk_means_zero_or_more
-    assert_equal "abbcccddddeeeee", "abbcccddddeeeee"[/ab*/]
+    assert_equal "abb", "abbcccddddeeeee"[/ab*/]
     assert_equal "a", "abbcccddddeeeee"[/az*/]
     assert_equal "", "abbcccddddeeeee"[/z*/]
 
@@ -44,7 +44,7 @@ class AboutRegularExpressions < Neo::Koan
   # ------------------------------------------------------------------
 
   def test_the_left_most_match_wins
-    assert_equal "az", "abbccc az"[/az*/]
+    assert_equal "a", "abbccc az"[/az*/]
   end
 
   # ------------------------------------------------------------------
@@ -93,12 +93,12 @@ class AboutRegularExpressions < Neo::Koan
 
   def test_slash_a_anchors_to_the_start_of_the_string
     assert_equal "start", "start end"[/\Astart/]
-    assert_equal "end", "start end"[/\Aend/]
+    assert_equal nil, "start end"[/\Aend/] #\Aは文字列の頭
   end
 
   def test_slash_z_anchors_to_the_end_of_the_string
     assert_equal "end", "start end"[/end\z/]
-    assert_equal "start", "start end"[/start\z/]
+    assert_equal nil, "start end"[/start\z/]
   end
 
   def test_caret_anchors_to_the_start_of_lines
