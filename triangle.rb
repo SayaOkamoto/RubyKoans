@@ -15,6 +15,18 @@
 #
 def triangle(a, b, c)
   # WRITE THIS CODE
+  if (a <= 0 || b <= 0 || c <= 0) || (a + b <= c || b + c <= a || c + a <= b)
+    raise TriangleError
+  end
+  ary = Array.new
+  ary.push(a, b, c).sort!
+  if ary[0] == ary[2]
+    :equilateral
+  elsif ary[0] == ary[1] || ary[1] == ary[2]
+    :isosceles
+  else
+    :scalene
+  end
 end
 
 # Error class used in part 2.  No need to change this code.
